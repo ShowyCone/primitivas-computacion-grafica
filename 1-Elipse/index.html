@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Elipse en Canvas</title>
+</head>
+<style>
+  body {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 98%;
+    background-color: #1a1a1a;
+  }
+
+  html {
+    height: 100vh;
+  }
+
+  canvas {
+    background-color: #666666;
+    border: 2px solid #1a1a1a;
+    border-radius: 30px;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #333333;
+    padding: 10px 30px;
+    border-radius: 30px;
+    border: solid 2px #000;
+    color: #ffffff;
+  }
+
+  .range-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .section1,
+  .section2 {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    background-color: #666666;
+    border-radius: 30px;
+    border: solid 2px #1a1a1a;
+  }
+
+  .section2 p {
+    width: 100%;
+    text-align: center;
+  }
+
+  .sections {
+    color: #ffffff;
+    height: 300px;
+    width: 40%;
+    border: solid 2px #000;
+    padding: 10px 30px;
+    display: flex;
+    flex-direction: column;
+    background-color: #333333;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 20px;
+  }
+
+  @media screen and (max-width: 768px) {
+    body {
+      flex-direction: column;
+      justify-content: center;
+      height: auto;
+    }
+
+    canvas {
+      width: 100%;
+    }
+
+    .container {
+      width: 80vw;
+      font-size: .5em;
+    }
+
+    .range {
+      font-size: 20px;
+    }
+
+    input {
+      width: 200px;
+    }
+
+    .sections {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 350px;
+      font-size: 1em;
+      padding: 0 0;
+      background-color: transparent;
+      border: none;
+    }
+
+    .section1 {
+      border-radius: 30px 30px 0 0;
+      padding: 10px;
+    }
+
+    .section2 {
+      padding: 10px;
+      height: 250px;
+      border-radius: 0 0 30px 30px;
+    }
+  }
+</style>
+
+<body>
+  <div class="container">
+    <canvas id="canvas"></canvas>
+    <div class="range-container">
+    </div>
+    <div class="range">
+      X:
+      <input id="xRange" type="range" min="10" max="500">
+    </div>
+    <div class="range">
+      Y:
+      <input id="yRange" type="range" min="10" max="400">
+    </div>
+  </div>
+  <div class="sections">
+    <div class="section1">
+      <p>
+        Información de la elipse: <br />
+        Área: <span class="ellipse-info"></span><br />
+        Circunferencia: <span class="ellipse-info"></span><br />
+        RadioX: <span class="ellipse-info"></span><br />
+        RadioY: <span class="ellipse-info"></span><br />
+      </p>
+      <p>
+        Información de la curva de Bézier: <br />
+        Punto de control X: <span class="bezier-info"></span><br />
+        Punto de control Y: <span class="bezier-info"></span>
+      </p>
+    </div>
+    <div class="section2">
+      <p>
+        Información de la fórmulade la curva de Bézier: <br />
+        <span class="bezier-data"></span>
+      </p>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>

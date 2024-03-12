@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bézier</title>
+  <style>
+    .point {
+      cursor: pointer;
+    }
+
+    * {
+      color: #ffffff;
+    }
+
+    button {
+      border-radius: 30px;
+      background-color: #333333;
+      border: solid 2px #000;
+      padding: 10px;
+      font-size: 1.5em;
+      cursor: pointer;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      height: 98%;
+      background-color: #1a1a1a;
+    }
+
+    html {
+      height: 100vh;
+    }
+
+    canvas {
+      background-color: #666666;
+      border: 2px solid #1a1a1a;
+      border-radius: 30px;
+    }
+
+    #info {
+      font-size: 1.1em;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    #info-formula {
+      overflow-x: auto;
+      white-space: nowrap;
+      width: 80%;
+      height: 50px;
+      text-align: center;
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <button id="toggleMode">Agregar Punto</button>
+  <canvas id="myCanvas" width="500" height="500"></canvas>
+  <div id="info"></div>
+  <div id="info-formula"></div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
