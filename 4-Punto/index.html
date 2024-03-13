@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Algoritmo de Punto en Canvas</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="500" height="500"></canvas>
+    <br>
+    X: <input type="number" id="x" min="0" max="500" oninput="validar()">
+    Y: <input type="number" id="y" min="0" max="500" oninput="validar()">
+    <button id="btnDibujar" onclick="dibujarPunto()" disabled>Dibujar Punto</button>
+    <button onclick="limpiar()">Eliminar</button>
+    <button onclick="puntoAleatorio()">Punto Aleatorio</button>
+
+    <script src="./script.js"></script>
+</body>
+</html>
