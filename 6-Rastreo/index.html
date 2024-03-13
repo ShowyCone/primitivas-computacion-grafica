@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Polígonos Regulares con Relleno Animado</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="500" height="500"></canvas>
+    <br>
+    Cantidad de Vértices: <input type="number" id="cantidadVertices" min="3" max="30" value="3">
+    <button onclick="dibujarPoligono()">Dibujar Polígono</button>
+    <button onclick="animarRelleno()">Rellenar</button>
+    <button onclick="limpiarCanvas()">Limpiar</button>
+    <button onclick="poligonoAleatorio()">Polígono Aleatorio</button>
+
+    <script>
+        let vertices = [];
+        let canvas = document.getElementById('myCanvas');
+        let ctx = canvas.getContext('2d');
+        let animacionId;
+
+        function obtenerVerticesRegulares(cantidad, radio, centroX, centroY) {
+            let vertices = [];
+            for (let i = 0; i < cantidad; i++) {
+                let angulo = i * 2 * Math.PI / cantidad;
+                let x = centroX + radio * Math.cos(angulo);
+                let y = centroY + radio * Math.sin(angulo);
+                vertices.push([x, y]);
+            }
+            return vertices;
+        }
+
+        function dibujarPoligono() {
+            let cantidad = parseInt(document.getElementById('cantidadVertices').value);
+            let radio = 200; // Radio fijo para el ejemplo
+            let centroX = canvas.width / 2;
+            let centroY = canvas.height / 2;
+            vertices = obtenerVerticesRegulares(cantidad, radio, centroX, centroY);
+            ctx.beginPath();
+            ctx.moveTo(vertices[0][0], vertices[0][1]);
+            for (let i = 1; i < vertices.length; i++) {
+                ctx.lineTo(vertices[i][0], vertices[i][1]);
+            }
+            ctx.closePath();
+            ctx.stroke();
+        }
+
+        function animarRelleno() {
+            if (vertices.length === 0 || animacionId) return;
+            let i = 0;
+            ctx.fillStyle = 'blue';
+            ctx.beginPath();
+            ctx.moveTo(vertices[0][0], vertices[0][1]);
+            animacionId = setInterval(() => {
+                if (i < vertices.length) {
+                    ctx.lineTo(vertices[i][0], vertices[i][1]);
+                    ctx.stroke();
+                    i++;
+                } else {
+                    ctx.closePath();
+                    ctx.fill();
+                    clearInterval(animacionId);
+                    animacionId = null;
+                }
+            }, 100);
+        }
+
+        function limpiarCanvas() {
+            if (animacionId) {
+                clearInterval(animacionId);
+                animacionId = null;
+            }
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            vertices = [];
+        }
+
+        function poligonoAleatorio() {
+            document.getElementById('cantidadVertices').value = Math.floor(Math.random() * (30 - 3 + 1)) + 3;
+            dibujarPoligono();
+        }
+    </script>
+</body>
+</html>
