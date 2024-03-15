@@ -9,16 +9,22 @@
     </style>
 </head>
 <body>
-    <canvas id="myCanvas" width="500" height="500"></canvas>
-    <br>
-    Centro X: <input type="number" min="0" max="500" id="xCoord">
-    Centro Y: <input type="number" min="0" max="500" id="yCoord">
-    Radio X: <input type="number" min="0" max="250" id="xRadius">
-    Radio Y: <input type="number" min="0" max="250" id="yRadius">
-    <button id="drawBtn">Dibujar Elipse</button>
-    <button id="clearBtn">Eliminar</button>
-    <button id="randomBtn">Elipse Aleatoria</button>
-
+    <header>
+        <button class="go-back">
+            <a href="https://showycone.github.io/primitivas-computacion-grafica/">Volver al menú</a>
+        </button>
+    </header>
+    <main>
+        <canvas id="myCanvas" width="500" height="500"></canvas>
+        <br>
+        Centro X: <input type="number" min="0" max="500" id="xCoord">
+        Centro Y: <input type="number" min="0" max="500" id="yCoord">
+        Radio X: <input type="number" min="0" max="250" id="xRadius">
+        Radio Y: <input type="number" min="0" max="250" id="yRadius">
+        <button id="drawBtn">Dibujar Elipse</button>
+        <button id="clearBtn">Eliminar</button>
+        <button id="randomBtn">Elipse Aleatoria</button>
+    </main>
     <script src="./script.js" type="module"></script>
 </body>
 </html>
