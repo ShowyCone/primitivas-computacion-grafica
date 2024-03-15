@@ -161,52 +161,48 @@ export default class Drawing {
    * @param {number} width - El ancho del área a rellenar.
    * @param {number} height - La altura del área a rellenar.
    */
-  fillShape(x, y, width, height) {
-    const imageData = this.ctx.getImageData(x, y, width, height)
-    const data = imageData.data
+  fillShape(x, y, radius, sides) {
+    const vertices = []
+    const angle = (Math.PI * 2) / sides
 
-    const fillColor = this.ctx.fillStyle
-    const fillColorArray = this.hexToRgb(fillColor)
-
-    const isInside = (x, y) => {
-      const index = (y - imageData.y) * width * 4 + (x - imageData.x) * 4
-      return (
-        data[index] === fillColorArray[0] &&
-        data[index + 1] === fillColorArray[1] &&
-        data[index + 2] === fillColorArray[2]
-      )
+    for (let i = 0; i < sides; i++) {
+      const vertexX = x + radius * Math.cos(angle * i)
+      const vertexY = y + radius * Math.sin(angle * i)
+      vertices.push([vertexX, vertexY])
     }
 
-    const fillHorizontalLine = (x1, x2, y) => {
-      for (let x = x1; x <= x2; x++) {
-        const index = (y - imageData.y) * width * 4 + (x - imageData.x) * 4
-        data[index] = fillColorArray[0]
-        data[index + 1] = fillColorArray[1]
-        data[index + 2] = fillColorArray[2]
-      }
+    // Encuentra los límites del polígono
+    let minY = vertices[0][1]
+    let maxY = vertices[0][1]
+    for (let i = 1; i < vertices.length; i++) {
+      const y = vertices[i][1]
+      if (y < minY) minY = y
+      if (y > maxY) maxY = y
     }
 
-    for (let y = 0; y < height; y++) {
-      let inside = false
-
-      for (let x = 0; x < width; x++) {
-        const index = (y * width + x) * 4
-
-        if (isInside(x, y)) {
-          inside = !inside
-        }
-
-        if (inside) {
-          let startX = x
-          while (inside && x < width) {
-            x++
-            inside = isInside(x, y)
-          }
-          fillHorizontalLine(startX, x - 1, y)
+    // Rellena el polígono
+    for (let scanLineY = minY; scanLineY <= maxY; scanLineY++) {
+      const intersections = []
+      for (let i = 0; i < vertices.length; i++) {
+        const j = (i + 1) % vertices.length
+        const [x1, y1] = vertices[i]
+        const [x2, y2] = vertices[j]
+        if (
+          (y1 < scanLineY && y2 >= scanLineY) ||
+          (y2 < scanLineY && y1 >= scanLineY)
+        ) {
+          const x = x1 + ((scanLineY - y1) / (y2 - y1)) * (x2 - x1)
+          intersections.push(x)
         }
       }
-    }
 
-    this.ctx.putImageData(imageData, x, y)
+      intersections.sort((a, b) => a - b)
+      for (let i = 0; i < intersections.length; i += 2) {
+        this.ctx.beginPath()
+        this.ctx.moveTo(intersections[i], scanLineY)
+        this.ctx.lineTo(intersections[i + 1], scanLineY)
+        this.ctx.stroke()
+      }
+    }
   }
 }
