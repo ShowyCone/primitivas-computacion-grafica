@@ -11,58 +11,14 @@
 <body>
     <canvas id="myCanvas" width="500" height="500"></canvas>
     <br>
-    Centro X: <input type="number" id="centroX" min="0" max="500" oninput="validar()">
-    Centro Y: <input type="number" id="centroY" min="0" max="500" oninput="validar()">
-    Radio X: <input type="number" id="radioX" min="0" max="250" oninput="validar()">
-    Radio Y: <input type="number" id="radioY" min="0" max="250" oninput="validar()">
-    <button id="btnDibujar" onclick="dibujarElipse()" disabled>Dibujar Elipse</button>
-    <button onclick="limpiar()">Eliminar</button>
-    <button onclick="elipseAleatoria()">Elipse Aleatoria</button>
+    Centro X: <input type="number" min="0" max="500" id="xCoord">
+    Centro Y: <input type="number" min="0" max="500" id="yCoord">
+    Radio X: <input type="number" min="0" max="250" id="xRadius">
+    Radio Y: <input type="number" min="0" max="250" id="yRadius">
+    <button id="drawBtn">Dibujar Elipse</button>
+    <button id="clearBtn">Eliminar</button>
+    <button id="randomBtn">Elipse Aleatoria</button>
 
-    <script>
-        function dibujarElipse() {
-            let centroX = parseInt(document.getElementById('centroX').value);
-            let centroY = parseInt(document.getElementById('centroY').value);
-            let radioX = parseInt(document.getElementById('radioX').value);
-            let radioY = parseInt(document.getElementById('radioY').value);
-            let canvas = document.getElementById('myCanvas');
-            let ctx = canvas.getContext('2d');
-            ctx.beginPath();
-            ctx.ellipse(centroX, centroY, radioX, radioY, 0, 0, 2 * Math.PI);
-            ctx.stroke();
-        }
-
-        function limpiar() {
-            let canvas = document.getElementById('myCanvas');
-            let ctx = canvas.getContext('2d');
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-        }
-
-        function elipseAleatoria() {
-            let centroX = Math.floor(Math.random() * 500);
-            let centroY = Math.floor(Math.random() * 500);
-            let radioX = Math.floor(Math.random() * 250);
-            let radioY = Math.floor(Math.random() * 250);
-            document.getElementById('centroX').value = centroX;
-            document.getElementById('centroY').value = centroY;
-            document.getElementById('radioX').value = radioX;
-            document.getElementById('radioY').value = radioY;
-            dibujarElipse();
-        }
-
-        function validar() {
-            let centroX = document.getElementById('centroX').value;
-            let centroY = document.getElementById('centroY').value;
-            let radioX = document.getElementById('radioX').value;
-            let radioY = document.getElementById('radioY').value;
-            let btnDibujar = document.getElementById('btnDibujar');
-
-            btnDibujar.disabled = !(centroX && centroY && radioX && radioY &&
-                                    centroX >= 0 && centroX <= 500 &&
-                                    centroY >= 0 && centroY <= 500 &&
-                                    radioX >= 0 && radioX <= 250 &&
-                                    radioY >= 0 && radioY <= 250);
-        }
-    </script>
+    <script src="./script.js" type="module"></script>
 </body>
 </html>
