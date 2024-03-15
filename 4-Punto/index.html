@@ -11,12 +11,12 @@
 <body>
     <canvas id="myCanvas" width="500" height="500"></canvas>
     <br>
-    X: <input type="number" id="x" min="0" max="500" oninput="validar()">
-    Y: <input type="number" id="y" min="0" max="500" oninput="validar()">
-    <button id="btnDibujar" onclick="dibujarPunto()" disabled>Dibujar Punto</button>
-    <button onclick="limpiar()">Eliminar</button>
-    <button onclick="puntoAleatorio()">Punto Aleatorio</button>
+    X: <input type="number" id="x" min="0" max="500">
+    Y: <input type="number" id="y" min="0" max="500">
+    <button id="drawBtn">Dibujar Punto</button>
+    <button id="clearBtn">Eliminar</button>
+    <button id="randomBtn">Punto Aleatorio</button>
 
-    <script src="./script.js"></script>
+    <script src="./script.js" type="module"></script>
 </body>
 </html>

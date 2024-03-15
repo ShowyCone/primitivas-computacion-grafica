@@ -1,32 +1,33 @@
-function dibujarPunto() {
-    let x = parseInt(document.getElementById('x').value);
-    let y = parseInt(document.getElementById('y').value);
-    let canvas = document.getElementById('myCanvas');
-    let ctx = canvas.getContext('2d');
-    ctx.fillStyle = 'black';
-    ctx.beginPath();
-    ctx.arc(x, y, 1, 0, Math.PI * 2, true);
-    ctx.fill();
+import Drawing from '../graphics.js'
+
+const drawBtn = document.getElementById('drawBtn')
+const clearBtn = document.getElementById('clearBtn')
+const randomBtn = document.getElementById('randomBtn')
+const canvas = document.getElementById('myCanvas')
+const canvasHeight = canvas.height
+const canvasWidth = canvas.width
+const ctx = canvas.getContext('2d')
+const coords = {
+  x: document.getElementById('x'),
+  y: document.getElementById('y'),
 }
 
-function limpiar() {
-    let canvas = document.getElementById('myCanvas');
-    let ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-}
+const drawing = new Drawing(ctx)
 
-function puntoAleatorio() {
-    let x = Math.floor(Math.random() * 500);
-    let y = Math.floor(Math.random() * 500);
-    document.getElementById('x').value = x;
-    document.getElementById('y').value = y;
-    dibujarPunto();
-}
+drawBtn.addEventListener('click', () => {
+  const x = parseInt(coords.x.value)
+  const y = parseInt(coords.y.value)
 
-function validar() {
-    let x = document.getElementById('x').value;
-    let y = document.getElementById('y').value;
-    let btnDibujar = document.getElementById('btnDibujar');
+  drawing.drawPoint(x, y)
+})
 
-    btnDibujar.disabled = !(x && y && x >= 0 && x <= 500 && y >= 0 && y <= 500);
-}
+clearBtn.addEventListener('click', () => {
+  drawing.clearCanvas(canvasWidth, canvasHeight)
+})
+
+randomBtn.addEventListener('click', () => {
+  drawing.drawPoint(
+    Math.floor(Math.random() * 501),
+    Math.floor(Math.random() * 501)
+  )
+})
