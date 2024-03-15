@@ -171,7 +171,6 @@ export default class Drawing {
       vertices.push([vertexX, vertexY])
     }
 
-    // Encuentra los límites del polígono
     let minY = vertices[0][1]
     let maxY = vertices[0][1]
     for (let i = 1; i < vertices.length; i++) {
@@ -180,7 +179,6 @@ export default class Drawing {
       if (y > maxY) maxY = y
     }
 
-    // Rellena el polígono
     for (let scanLineY = minY; scanLineY <= maxY; scanLineY++) {
       const intersections = []
       for (let i = 0; i < vertices.length; i++) {
@@ -204,5 +202,21 @@ export default class Drawing {
         this.ctx.stroke()
       }
     }
+  }
+
+  /**
+   * Dibuja una curva de Bézier en el contexto del canvas.
+   * @param {number} x0 - La coordenada x del primer punto de control.
+   * @param {number} y0 - La coordenada y del primer punto de control.
+   * @param {number} x1 - La coordenada x del segundo punto de control.
+   * @param {number} y1 - La coordenada y del segundo punto de control.
+   * @param {number} x2 - La coordenada x del tercer punto de control.
+   * @param {number} y2 - La coordenada y del tercer punto de control.
+   */
+  drawBezierCurve(x0, y0, x1, y1, x2, y2) {
+    this.ctx.beginPath()
+    this.ctx.moveTo(x0, y0)
+    this.ctx.bezierCurveTo(x1, y1, x1, y1, x2, y2)
+    this.ctx.stroke()
   }
 }
