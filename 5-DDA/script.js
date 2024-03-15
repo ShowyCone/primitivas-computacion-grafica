@@ -1,53 +1,41 @@
-function dibujarLinea() {
-    let x0 = parseInt(document.getElementById('x0').value);
-    let y0 = parseInt(document.getElementById('y0').value);
-    let x1 = parseInt(document.getElementById('x1').value);
-    let y1 = parseInt(document.getElementById('y1').value);
-    let dx = x1 - x0;
-    let dy = y1 - y0;
-    let steps = Math.abs(dx) > Math.abs(dy) ? Math.abs(dx) : Math.abs(dy);
-    let incrementoX = dx / steps;
-    let incrementoY = dy / steps;
-    let x = x0;
-    let y = y0;
-    let canvas = document.getElementById('myCanvas');
-    let ctx = canvas.getContext('2d');
-    ctx.fillStyle = 'black';
-    for (let i = 0; i <= steps; i++) {
-        ctx.fillRect(Math.round(x), Math.round(y), 1, 1);
-        x += incrementoX;
-        y += incrementoY;
-    }
+import Drawing from '../graphics.js'
+
+const drawBtn = document.getElementById('drawBtn')
+const clearBtn = document.getElementById('clearBtn')
+const randomBtn = document.getElementById('randomBtn')
+const canvas = document.getElementById('myCanvas')
+const canvasHeight = canvas.height
+const canvasWidth = canvas.width
+const ctx = canvas.getContext('2d')
+const coords0 = {
+  x: document.getElementById('x0'),
+  y: document.getElementById('y0'),
+}
+const coords1 = {
+  x: document.getElementById('x1'),
+  y: document.getElementById('y1'),
 }
 
-function limpiar() {
-    let canvas = document.getElementById('myCanvas');
-    let ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-}
+const drawing = new Drawing(ctx)
 
-function lineaAleatoria() {
-    let x0 = Math.floor(Math.random() * 500);
-    let y0 = Math.floor(Math.random() * 500);
-    let x1 = Math.floor(Math.random() * 500);
-    let y1 = Math.floor(Math.random() * 500);
-    document.getElementById('x0').value = x0;
-    document.getElementById('y0').value = y0;
-    document.getElementById('x1').value = x1;
-    document.getElementById('y1').value = y1;
-    dibujarLinea();
-}
+drawBtn.addEventListener('click', () => {
+  const x0 = parseInt(coords0.x.value)
+  const y0 = parseInt(coords0.y.value)
+  const x1 = parseInt(coords1.x.value)
+  const y1 = parseInt(coords1.y.value)
 
-function validar() {
-    let x0 = document.getElementById('x0').value;
-    let y0 = document.getElementById('y0').value;
-    let x1 = document.getElementById('x1').value;
-    let y1 = document.getElementById('y1').value;
-    let btnDibujar = document.getElementById('btnDibujar');
+  drawing.drawDDALine(x0, y0, x1, y1)
+})
 
-    btnDibujar.disabled = !(x0 && y0 && x1 && y1 &&
-                            x0 >= 0 && x0 <= 500 &&
-                            y0 >= 0 && y0 <= 500 &&
-                            x1 >= 0 && x1 <= 500 &&
-                            y1 >= 0 && y1 <= 500);
-}
+clearBtn.addEventListener('click', () => {
+  drawing.clearCanvas(canvasWidth, canvasHeight)
+})
+
+randomBtn.addEventListener('click', () => {
+  drawing.drawDDALine(
+    Math.floor(Math.random() * 501),
+    Math.floor(Math.random() * 501),
+    Math.floor(Math.random() * 501),
+    Math.floor(Math.random() * 501)
+  )
+})
