@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Algoritmo de Bresenham con Controles</title>
+    <title>Algoritmo de Bresenham</title>
     <style>
         canvas {
             border: 1px solid black;
@@ -11,14 +11,14 @@
 <body>
     <canvas id="myCanvas" width="500" height="500"></canvas>
     <br>
-    X0: <input type="number" id="x0" min="0" max="500" oninput="validation()">
-    Y0: <input type="number" id="y0" min="0" max="500" oninput="validation()">
-    X1: <input type="number" id="x1" min="0" max="500" oninput="validation()">
-    Y1: <input type="number" id="y1" min="0" max="500" oninput="validation()">
-    <button id="btnDibujar" onclick="dibujar()" disabled>Dibujar</button>
-    <button onclick="limpiar()">Eliminar</button>
-    <button onclick="aleatorio()">Aleatorio</button>
+    X0: <input type="number" id="x0" min="0" max="500">
+    Y0: <input type="number" id="y0" min="0" max="500">
+    X1: <input type="number" id="x1" min="0" max="500">
+    Y1: <input type="number" id="y1" min="0" max="500">
+    <button id="drawBtn">Dibujar linea</button>
+    <button id="clearBtn">Eliminar</button>
+    <button id="randomBtn">Linea Aleatoria</button>
 
-    <script src="./script.js"></script>
+    <script src="./script.js" type="module"></script>
 </body>
 </html>
