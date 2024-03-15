@@ -1,5 +1,3 @@
-¡Por supuesto! Aquí tienes una versión mejorada con emojis:
-
 # Primitivas de Computación Gráfica
 
 Colección de primitivas de computación gráfica.
