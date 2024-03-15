@@ -15,14 +15,23 @@
     </header>
     <main>
       <canvas id="myCanvas" width="500" height="500"></canvas>
-      <br />
-      Centro X: <input type="number" min="0" max="500" id="xCoord" /> Centro Y:
-      <input type="number" min="0" max="500" id="yCoord" /> Radio X:
-      <input type="number" min="0" max="250" id="xRadius" /> Radio Y:
-      <input type="number" min="0" max="250" id="yRadius" />
-      <button id="drawBtn">Dibujar Elipse</button>
-      <button id="clearBtn">Eliminar</button>
-      <button id="randomBtn">Elipse Aleatoria</button>
+      <div class="control-container">
+        <div class="inputs">
+          <span>Centro X: </span
+          ><input type="number" min="0" max="500" id="xCoord" />
+          <span>Centro Y: </span
+          ><input type="number" min="0" max="500" id="yCoord" />
+          <span>Radio X: </span
+          ><input type="number" min="0" max="250" id="xRadius" />
+          <span>Radio X: </span
+          ><input type="number" min="0" max="250" id="yRadius" />
+        </div>
+        <div class="buttons">
+          <button id="drawBtn">Dibujar Elipse</button>
+          <button id="clearBtn">Eliminar</button>
+          <button id="randomBtn">Elipse Aleatoria</button>
+        </div>
+      </div>
     </main>
     <script src="./script.js" type="module"></script>
   </body>

@@ -14,15 +14,24 @@
     </header>
     <main>
       <canvas id="myCanvas" width="500" height="500"></canvas>
-      <br />
-      X: <input type="number" id="x" min="0" max="500" value="250" /> Y:
-      <input type="number" id="y" min="0" max="500" value="250" /> Lados:
-      <input type="number" id="sides" min="3" max="30" value="3" /> Radio:
-      <input type="number" id="radius" min="0" max="250" value="100" />
-      <button id="drawBtn">Dibujar Polígono</button>
-      <button id="fillBtn">Rellenar</button>
-      <button id="clearBtn">Limpiar</button>
-      <button id="randomBtn">Polígono Aleatorio</button>
+      <div class="control-container">
+        <div class="inputs">
+          <span>X: </span
+          ><input type="number" id="x" min="0" max="500" value="250" />
+          <span>Y: </span
+          ><input type="number" id="y" min="0" max="500" value="250" />
+          <span>Lados: </span
+          ><input type="number" id="sides" min="3" max="30" value="3" />
+          <span>Radio: </span
+          ><input type="number" id="radius" min="0" max="250" value="100" />
+        </div>
+        <div class="buttons">
+          <button id="drawBtn">Dibujar Polígono</button>
+          <button id="fillBtn">Rellenar</button>
+          <button id="clearBtn">Limpiar</button>
+          <button id="randomBtn">Polígono Aleatorio</button>
+        </div>
+      </div>
     </main>
     <script src="./script.js" type="module"></script>
   </body>
