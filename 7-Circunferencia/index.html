@@ -11,13 +11,13 @@
 <body>
     <canvas id="myCanvas" width="500" height="500"></canvas>
     <br>
-    Centro X: <input type="number" id="centroX" value="250" min="0" max="500">
-    Centro Y: <input type="number" id="centroY" value="250" min="0" max="500">
-    Radio: <input type="number" id="radio" value="100" min="0" max="250">
-    <button onclick="dibujarCircunferencia()">Dibujar Circunferencia</button>
-    <button onclick="circunferenciaAleatoria()">Circunferencia Aleatoria</button>
-    <button onclick="limpiarCanvas()">Limpiar</button>
+    X: <input type="number" id="x" min="0" max="500">
+    Y: <input type="number" id="y" min="0" max="500">
+    Radio: <input type="number" id="radius" min="0" max="500">
+    <button id="drawBtn">Dibujar linea</button>
+    <button id="clearBtn">Limpiar</button>
+    <button id="randomBtn">Circunferencia Aleatoria</button>
 
-    <script src="./script.js"></script>
+    <script src="./script.js" type="module"></script>
 </body>
 </html>

@@ -1,33 +1,36 @@
-function dibujarCircunferencia() {
-    let centroX = document.getElementById('centroX').value;
-    let centroY = document.getElementById('centroY').value;
-    let radio = document.getElementById('radio').value;
-    let canvas = document.getElementById('myCanvas');
-    let ctx = canvas.getContext('2d');
-    ctx.beginPath();
-    ctx.arc(centroX, centroY, radio, 0, Math.PI * 2);
-    ctx.stroke();
+import Drawing from '../graphics.js'
+
+const drawBtn = document.getElementById('drawBtn')
+const clearBtn = document.getElementById('clearBtn')
+const randomBtn = document.getElementById('randomBtn')
+const radius = document.getElementById('radius')
+const canvas = document.getElementById('myCanvas')
+const canvasHeight = canvas.height
+const canvasWidth = canvas.width
+const ctx = canvas.getContext('2d')
+const coords = {
+  x: document.getElementById('x'),
+  y: document.getElementById('y'),
 }
 
-function circunferenciaAleatoria() {
-    let maxRadio = 250;
-    let radio = Math.random() * maxRadio;
-    let centroX = Math.random() * (500 - 2 * radio) + radio;
-    let centroY = Math.random() * (500 - 2 * radio) + radio;
-    document.getElementById('centroX').value = centroX;
-    document.getElementById('centroY').value = centroY;
-    document.getElementById('radio').value = radio;
-    dibujarCircunferencia();
-}
+const drawing = new Drawing(ctx)
 
-function limpiarCanvas() {
-    let canvas = document.getElementById('myCanvas');
-    let ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-}
+drawBtn.addEventListener('click', () => {
+  const x = parseInt(coords.x.value)
+  const y = parseInt(coords.y.value)
+  const radiusN = parseInt(radius.value)
 
-dibujarCircunferencia(
-    document.getElementById('centroX').value,
-    document.getElementById('centroY').value,
-    document.getElementById('radio').value
-);
+  drawing.drawCircle(x, y, radiusN)
+})
+
+clearBtn.addEventListener('click', () => {
+  drawing.clearCanvas(canvasWidth, canvasHeight)
+})
+
+randomBtn.addEventListener('click', () => {
+  drawing.drawCircle(
+    Math.floor(Math.random() * 501),
+    Math.floor(Math.random() * 501),
+    Math.floor(Math.random() * 251)
+  )
+})
