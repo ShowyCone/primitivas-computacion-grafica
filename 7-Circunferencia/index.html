@@ -8,15 +8,23 @@
     <link rel="stylesheet" href="../styles.css" />
   </head>
   <body>
-    <canvas id="myCanvas" width="500" height="500"></canvas>
-    <br />
-    X: <input type="number" id="x" min="0" max="500" /> Y:
-    <input type="number" id="y" min="0" max="500" /> Radio:
-    <input type="number" id="radius" min="0" max="500" />
-    <button id="drawBtn">Dibujar linea</button>
-    <button id="clearBtn">Limpiar</button>
-    <button id="randomBtn">Circunferencia Aleatoria</button>
-
+    <header>
+      <button class="go-back">
+        <a href="https://showycone.github.io/primitivas-computacion-grafica/"
+          >Volver al menú</a
+        >
+      </button>
+    </header>
+    <main>
+      <canvas id="myCanvas" width="500" height="500"></canvas>
+      <br />
+      X: <input type="number" id="x" min="0" max="500" /> Y:
+      <input type="number" id="y" min="0" max="500" /> Radio:
+      <input type="number" id="radius" min="0" max="500" />
+      <button id="drawBtn">Dibujar linea</button>
+      <button id="clearBtn">Limpiar</button>
+      <button id="randomBtn">Circunferencia Aleatoria</button>
+    </main>
     <script src="./script.js" type="module"></script>
   </body>
 </html>
