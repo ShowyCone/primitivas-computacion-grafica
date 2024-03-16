@@ -5,9 +5,10 @@ export default class Drawing {
    */
   constructor(ctx) {
     this.ctx = ctx
-    this.lineColor = 'black'
+    this.lineColor = 'white'
     this.lineWidth = 1
     this.lineStyle = 'solid'
+    this.pointColor = 'white'
   }
 
   /**
@@ -16,6 +17,14 @@ export default class Drawing {
    */
   setLineColor(color) {
     this.lineColor = color
+  }
+
+  /**
+   * Establece el color del punto.
+   * @param {string} color - El color del punto a establecer.
+   */
+  setPointColor(color) {
+    this.pointColor = color
   }
 
   /**
@@ -62,6 +71,7 @@ export default class Drawing {
    * @param {number} y - La coordenada y del punto.
    */
   drawPoint(x, y) {
+    this.ctx.fillStyle = this.pointColor
     this.ctx.fillRect(x, y, 1, 1)
   }
 
